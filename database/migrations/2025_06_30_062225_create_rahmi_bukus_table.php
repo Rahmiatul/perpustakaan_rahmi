@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('rahmi_bukus', function (Blueprint $table) {
     $table->id();
     $table->string('judul');
-    $table->string('pengarang');
+    $table->string('penulis');
+    $table->year('tahun_terbit');
     $table->unsignedBigInteger('kategori_id');
-    $table->foreign('kategori_id')->references('id')->on('rahmi_kategoris')->onDelete('cascade');
     $table->timestamps();
+
+    $table->foreign('kategori_id')->references('id')->on('rahmi_kategoris')->onDelete('cascade');
 });
 
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bukus');
+        Schema::dropIfExists('rahmi_bukus');
     }
 };
